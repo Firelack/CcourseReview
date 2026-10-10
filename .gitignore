@@ -1,0 +1,11 @@
+# Retire tout
+*
+# Remets les fichiers avec une extension
+!*.*
+# Remets les dossiers
+!*/
+# Remets les makefile
+!makefile
+!Makefile
+# Retire les fichiers objets
+*.o

@@ -1,4 +1,4 @@
-# CcourseReview - Programmation Impérative en C
+# CcourseReview - Programmation Impérative en C et C++
 
 ## 🎯 Objectifs du Projet
 
@@ -9,7 +9,7 @@ Il a été conçu comme résumé mes cours de C (et C++) pour les réviser simpl
 
 Les codes de ce dépôt suivent le standard C99 de manière stricte.
 
-- **Compilateur :** `gcc` (GNU Compiler Collection).
+- **Compilateur :** `gcc` (GNU Compiler Collection) et `g++`.
 - **Environnement recommandé :** Linux (parfaitement adapté pour une exécution sous WSL Ubuntu).
 - **Outils d'analyse :** `valgrind` pour la vérification des fuites mémoires.
 
@@ -47,8 +47,16 @@ Le projet est divisé en 5 chapitres correspondant à la progression du cours, c
   - La généricité en C avec l'utilisation des pointeurs génériques `void*`.
   - Les pointeurs de fonctions et leur utilisation pratique (ex: algorithme de tri générique `qsort`).
 
+- 📁 **`CPP1_bases_et_classes/`**
+  - Transition du C au C++98 (`g++`).
+  - Entrées/sorties avec `<iostream>` (`std::cout`, `std::cin`).
+  - Passage par référence (`&`) et allocation dynamique (`new` / `delete`).
+  - Déclaration de classes (`class`), constructeurs, destructeur (`~Point()`) et pointeur `this`.
+  - Introduction à la STL : chaînes d'objets (`std::string`) et tableaux dynamiques (`std::vector` + itérateurs).
+
 ## 🚀 Commandes de Compilation Standard
 
 ```bash
 gcc -std=c99 -Wall -Wextra -pedantic -Wno-abi -o exec main.c
+g++ -std=c++98 -Wall -Wextra -pedantic -o exec main.cpp
 ```

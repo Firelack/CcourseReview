@@ -115,3 +115,33 @@ Le code source `.c` est transformé en exécutable en 4 étapes :
 - Permet de passer une fonction en paramètre d'une autre fonction.
 - Déclaration : `int (*nom_pointeur)(int, int);`
 - **Cas pratique (`qsort`)** : La fonction de tri de `<stdlib.h>` utilise la généricité et les pointeurs de fonctions pour trier n'importe quel tableau. Elle a besoin qu'on lui fournisse une fonction de comparaison (`int comparer(const void *a, const void *b)`).
+
+## CPP1 : Introduction au C++98, Références, Classes et STL
+
+### 1. Du C99 au C++98
+
+- **Compilateur et Fichiers** : Compilation avec `g++ -std=c++98 -Wall -Wextra -pedantic`. Utilisation des extensions `.hpp` pour les en-têtes et `.cpp` pour les fichiers sources.
+- **Entrées/Sorties (`<iostream>`)** : Remplacement de `printf`/`scanf` par les flux `std::cout << ... << std::endl;` et `std::cin >> var;`.
+- **Espaces de noms (`namespace`)** : Permettent d'isoler les identificateurs pour éviter les collisions de noms (ex: `using namespace std;` ou `std::cout`).
+
+### 2. Passages par Référence (`&`)
+
+- Une référence (`int &ref = x;`) agit comme un alias direct sur une variable existante.
+- **Passage par référence dans les fonctions** : `void echanger(int &a, int &b)` permet de modifier directement les variables transmises sans manipuler la syntaxe des pointeurs (`*a`) ni passer d'adresses (`&x`) lors de l'appel.
+
+### 3. Allocation Dynamique (`new` / `delete`)
+
+- **Élément simple** : `int *p = new int(42);` -> Libération avec `delete p;`.
+- **Tableau dynamique** : `int *tab = new int[n];` -> Libération obligatoire avec `delete[] tab;`.
+
+### 4. Classes (`class`) et Encapsulation
+
+- **Membres privés par défaut** (`private:`), contrairement aux `struct` où les membres sont publics par défaut.
+- **Constructeurs et Destructeur** : Initialisation des instances (`Point()`, `Point(double x, double y)`) et libération des ressources à la destruction de l'objet via `~Point()`.
+- **Pointeur `this`** : Pointeur implicite vers l'instance courante de la classe (`this->x`).
+
+### 5. Conteneurs de la STL (`string` et `vector`)
+
+- **`std::string`** : Objet chaîne modifiable avec concaténation directe (`+`), taille (`.size()`) et conversion en C-string (`.c_str()`).
+- **`std::vector<T>`** : Tableau dynamique gérant automatiquement sa taille et sa mémoire (`.push_back()`, `.size()`, accès par crochets `[]`).
+- **Itérateurs** : Objets permettant de parcourir n'importe quel conteneur de manière uniforme (`std::vector<int>::iterator it = v.begin(); it != v.end(); ++it`).

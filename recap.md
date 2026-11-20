@@ -145,3 +145,42 @@ Le code source `.c` est transformé en exécutable en 4 étapes :
 - **`std::string`** : Objet chaîne modifiable avec concaténation directe (`+`), taille (`.size()`) et conversion en C-string (`.c_str()`).
 - **`std::vector<T>`** : Tableau dynamique gérant automatiquement sa taille et sa mémoire (`.push_back()`, `.size()`, accès par crochets `[]`).
 - **Itérateurs** : Objets permettant de parcourir n'importe quel conteneur de manière uniforme (`std::vector<int>::iterator it = v.begin(); it != v.end(); ++it`).
+
+## CPP2 : Constructeur de Copie, Liste d'Initialisation, Héritage et STL Avancée
+
+### 1. Constructeur par Recopie (Copy Constructor)
+* **Utilité** : Appelé lors du passage d'un objet par valeur, de la création d'un objet par copie (`NomClasse b = a;`) ou du retour d'un objet par une fonction.
+* **Syntaxe** : `NomClasse(const NomClasse& obj);`.
+* **Copie naïve vs Copie profonde** :
+  * *Par défaut* : Le compilateur effectue une copie membre à membre (copie naïve).
+  * *Problème avec les pointeurs* : Si un objet contient un pointeur alloué dynamiquement, la copie naïve copie simplement l'adresse mémoire. La destruction des deux objets provoquera un double `delete` (crash mémoire).
+  * *Copie profonde* : Il faut réallouer de la mémoire sur le tas et copier le contenu pointé.
+
+### 2. Liste d'Initialisation des Constructeurs
+* **Syntaxe** : `Classe::Classe(type arg) : attribut1(arg), attribut2(valeur) { ... }`.
+* **Pourquoi l'utiliser ?** :
+  * Initialise directement les membres avant l'exécution du corps du constructeur (évite une construction par défaut suivie d'une réaffectation).
+  * **Obligatoire** pour les attributs `const`, les références `&`, les objets sans constructeur par défaut et l'appel au constructeur de la classe de base.
+
+### 3. Surcharge des Opérateurs d'Incrémentation et Décrémentation (`++` et `--`)
+* **Pré-incrémentation (`++x`)** : Modifie l'objet et renvoie l'objet lui-même par référence.
+  * Signature : `Type& operator++();`
+* **Post-incrémentation (`x++`)** : Sauvegarde une copie de l'état actuel, incrémente l'objet, puis renvoie la copie temporaire par valeur.
+  * Signature : `Type operator++(int);` *(l'argument `int` est un paramètre muet fictif servant uniquement à différencier la signature du préfixe)*.
+
+### 4. Notions de base de l'Héritage
+* **Syntaxe** : `class Etudiant : public Humain { ... };`.
+* **Appel du constructeur parent** : Réalisé dans la liste d'initialisation : `Etudiant::Etudiant(string nom, long ine) : Humain(nom), INE(ine) { }`.
+* **Ordre de construction & destruction** :
+  * **Construction** : Classe de base (Parent) d'abord, puis classe dérivée (Enfant).
+  * **Destruction** : Classe dérivée (Enfant) d'abord, puis classe de base (Parent).
+
+### 5. STL : Conteneurs Associatifs (`std::map`) et Types d'Itérateurs
+* **`std::map<Key, Value>`** :
+  * Conteneur associatif stockant des paires clé/valeur.
+  * Accès/Insertion : `m[cle] = valeur;` (si la clé n'existe pas, elle est créée automatiquement).
+  * Lecture via itérateur : `it->first` donne la clé, `it->second` donne la valeur.
+* **Catégories d'itérateurs** :
+  * **`RandomAccessIterator`** (`vector`, `deque`) : Supporte `++`, `--`, `+n`, `-n`, `[]`.
+  * **`BidirectionalIterator`** (`list`, `map`, `set`) : Supporte uniquement `++` et `--`.
+  * **`ForwardIterator`** (`forward_list`, `unordered_set`) : Supporte uniquement `++`.

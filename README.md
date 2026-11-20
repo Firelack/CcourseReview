@@ -54,6 +54,13 @@ Le projet est divisé en 5 chapitres correspondant à la progression du cours, c
   - Déclaration de classes (`class`), constructeurs, destructeur (`~Point()`) et pointeur `this`.
   - Introduction à la STL : chaînes d'objets (`std::string`) et tableaux dynamiques (`std::vector` + itérateurs).
 
+- 📁 **`CPP2_classes_avancees_stl/`**
+  - Liste d'initialisation des constructeurs et constructeur de recopie (`const NomClasse&`).
+  - Optimisation du compilateur **NRVO** (Named Return Value Optimization).
+  - Surcharge des opérateurs d'incrémentation/décrémentation préfixés (`++x`) et postfixés (`x++`).
+  - Héritage simple (`public`), ordre de construction et de destruction Parent/Enfant.
+  - Conteneurs associatifs STL (`std::map`, `std::set`) et typologie des itérateurs.
+
 ## 🚀 Commandes de Compilation Standard
 
 ```bash

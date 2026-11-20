@@ -184,3 +184,30 @@ Le code source `.c` est transformé en exécutable en 4 étapes :
   * **`RandomAccessIterator`** (`vector`, `deque`) : Supporte `++`, `--`, `+n`, `-n`, `[]`.
   * **`BidirectionalIterator`** (`list`, `map`, `set`) : Supporte uniquement `++` et `--`.
   * **`ForwardIterator`** (`forward_list`, `unordered_set`) : Supporte uniquement `++`.
+
+## CPP3 : Héritage Avancé, Polymorphisme et Classes Abstraites
+
+### 1. Upcasting, Downcasting et Slicing
+* **Upcasting** : Conversion d'une classe fille vers une classe mère (implicite : `Personne &p = e;`).
+* **Downcasting** : Conversion d'une classe mère vers une classe fille (explicite : `Etudiant &ep = static_cast<Etudiant&>(p);`).
+* **Slicing** : Perte de la partie spécifique lors d'une copie par valeur d'un objet dérivé dans un objet de base (`Personne p = e;`).
+
+### 2. Héritage Multiple et Principe de Liskov (LSP)
+* **Héritage Multiple** : Une classe fille hérite de plusieurs mères. Résolution des ambiguïtés via l'opérateur de portée (`obj.ClasseMere::methode()`).
+* **Principe de substitution de Liskov (LSP)** : Un objet sous-type doit pouvoir remplacer un objet de type de base sans altérer le bon fonctionnement du programme.
+
+### 3. Polymorphisme, Méthodes Virtuelles et Classes Abstraites
+* **Liaison Dynamique (`virtual`)** : L'appel d'une méthode `virtual` via un pointeur/référence appelle la version du type réel à l'exécution (*Late Binding*).
+* **Destructeur Virtuel** : **OBLIGATOIRE** (`virtual ~Base()`) pour détruire correctement les classes dérivées via un pointeur de base.
+* **Virtuel Pur (`= 0`) et Classe Abstraite** : Une méthode `virtual void f() = 0;` rend la classe abstraite (**impossible à instancier**). Force la redéfinition dans les classes filles.
+
+## CPP4 : Surcharge des Opérateurs et Fonctions Amies (friend)
+
+### 1. Surcharge d'Opérateurs (`operator`)
+* **Membres obligatoires** : `=`, `[]`, `()`, `->`.
+* **Const-Correctness** : Préciser `const` sur les méthodes ne modifiant pas l'objet (`bool operator==(const Complexe &c) const;`).
+* **Opérateur `=`** : Doit renvoyer `Type&` (`return *this;`) pour autoriser le chaînage (`a = b = c`).
+
+### 2. Fonctions Amies (`friend`) et Opérateurs Libres
+* **`friend`** : Autorise une fonction non-membre à accéder aux membres privés (`private`) de la classe.
+* **Opérateurs libres** : Indispensables pour les flux d'entrée/sortie (`std::ostream &operator<<(std::ostream &os, const Complexe &c)`) et la commutativité des opérations (`double + Complexe`).

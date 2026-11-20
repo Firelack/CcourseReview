@@ -61,6 +61,16 @@ Le projet est divisé en 5 chapitres correspondant à la progression du cours, c
   - Héritage simple (`public`), ordre de construction et de destruction Parent/Enfant.
   - Conteneurs associatifs STL (`std::map`, `std::set`) et typologie des itérateurs.
 
+- 📁 **`CPP3_polymorphisme_heritage/`**
+    - Upcasting, Downcasting (`static_cast`), Slicing et Héritage multiple.
+    - Principe de substitution de Liskov (LSP).
+    - Polymorphisme dynamique (`virtual`), liaison tardive (*Late Binding*) et destructeur virtuel.
+    - Classes abstraites et méthodes virtuelles pures (`= 0`).
+- 📁 **`CPP4_surcharge_operateurs_amis/`**
+    - Surcharge des opérateurs membres (`=`, `[]`, `++`, `--`) et libres/non-membres.
+    - Fonctions amies (`friend`) et surcharge des flux d'E/S (`std::cout <<`, `std::cin >>`).
+    - Commutativité des opérations (`Complexe + double` et `double + Complexe`).
+
 ## 🚀 Commandes de Compilation Standard
 
 ```bash
